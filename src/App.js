@@ -15,14 +15,12 @@ class App extends Component {
     fetch(searchURL)
         .then(response => response.json())
         .then(data => console.log(data))
-    console.log(searchURL);
   }
 
   onInputChange = (event) => {
     this.setState({searchTerm: event.target.value});
     this.setState({searchTermEncoded: encodeURI(event.target.value)});
   }
-  
   
   
   render() {
