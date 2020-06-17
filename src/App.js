@@ -9,14 +9,22 @@ class App extends Component {
       searchTermEncoded:""
     };
   }
+  
 
   onButtonSubmit = () => {
-    const searchURL = 'https://itunes.apple.com/search?term=' + this.state.searchTermEncoded;
+    const searchURL = 'https://itunes.apple.com/search?term=' + this.state.searchTermEncoded + '&limit=10';
     fetch(searchURL)
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => {
+          if(data.results)
+            {console.log(data.results);}
+          else
+          console.log("No");
+        })
   }
 
+  
+  
   onInputChange = (event) => {
     this.setState({searchTerm: event.target.value});
     this.setState({searchTermEncoded: encodeURI(event.target.value)});
