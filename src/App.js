@@ -32,7 +32,7 @@ class App extends Component {
     this.setState({searchTermEncoded: encodeURI(event.target.value)});
   }
   
-  
+  //main render function
   render() {
     return (
       <div>
