@@ -1,32 +1,27 @@
 import React from 'react';
 import InfoCard from './InfoCard';
 
-const CardList = ({searchRes, noResult}) => {
-    
-    const CardComponent = searchRes.map((cardItem,i) => {
-        return <InfoCard key={i} data={searchRes[i]} />
-    })
-    
-    function EmptyMessage(nores) {
-        if(nores===true) {
-            return (
-                <h2>true</h2>
-            );
-        }
-        else {
-            return (
-                <div></div>
-            );
-        }
-    }
+class CardList extends React.Component {
+    render() {   
+        let {noResult, searchRes} = this.props;
 
-    return (
-        <div>
-            <EmptyMessage noResult={noResult}/>
-            <hr></hr>
-            {CardComponent}
-        </div>
-    );
+        const CardComponent = searchRes.map((cardItem,i) => {
+            return <InfoCard key={i} data={searchRes[i]} />
+        })
+
+        const nores = () => {
+        if(noResult===true) {return <h5 className="text-center">No results! Kindly revise your search term.</h5> }
+            else {return <div></div> }
+        }
+
+        return (
+            <div>
+                <hr></hr>
+                {nores()}
+                {CardComponent}
+            </div>
+        );
+    }
 }
 
 export default CardList;

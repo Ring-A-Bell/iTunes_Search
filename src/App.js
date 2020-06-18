@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SearchCard from './Components/SearchCard';
-import CardList2 from './Components/CardList2';
+import CardList from './Components/CardList';
 
 class App extends Component {
   constructor() {
@@ -38,7 +38,7 @@ class App extends Component {
       <div>
         <SearchCard onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit}/>
         <br></br>
-        <CardList2 searchRes={this.state.searchRes} noResult={this.state.noResult} />
+        <CardList searchRes={this.state.searchRes} noResult={this.state.noResult} />
       </div>
     );
   }
