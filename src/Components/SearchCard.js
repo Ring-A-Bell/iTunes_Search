@@ -8,14 +8,14 @@ class SearchCard extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-md-6 offset-3">
+          <div className="col-md-7 offset-3 text-center">
             <Card>
                 <CardHeader>iTunes Song Search</CardHeader>
                 <CardBody>
-                    <CardTitle>Search by title, artist, album</CardTitle>
+                    <CardTitle>Retrieve song details from iTunes' enormous database</CardTitle>
                     <br></br>
                     <InputGroup>
-                        <Input onChange={this.props.onInputChange}/>
+                        <Input onChange={this.props.onInputChange} placeholder="Enter artist/song/album name"/>
                         <InputGroupAddon addonType="append">
                             <Button color="primary" onClick={() => this.props.onButtonSubmit()}>Search</Button>
                         </InputGroupAddon>

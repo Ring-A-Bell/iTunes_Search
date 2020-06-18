@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import SearchCard from './Components/SearchCard';
+import CardList2 from './Components/CardList2';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      searchTerm: "",
-      searchTermEncoded:""
+      searchTermEncoded:"",
+      searchRes: [],
+      noResult: false
     };
   }
   
@@ -16,24 +18,28 @@ class App extends Component {
     fetch(searchURL)
         .then(response => response.json())
         .then(data => {
-          if(data.results)
-            {console.log(data.results);}
-          else
-          console.log("No");
+          if(data.results[0]) {
+            this.setState({searchRes: data.results, noResult: false})
+          } else {
+            this.setState({searchRes: [], noResult: true})
+          }
         })
   }
 
   
   
   onInputChange = (event) => {
-    this.setState({searchTerm: event.target.value});
     this.setState({searchTermEncoded: encodeURI(event.target.value)});
   }
   
   
   render() {
     return (
-      <SearchCard onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit}/>
+      <div>
+        <SearchCard onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit}/>
+        <br></br>
+        <CardList2 searchRes={this.state.searchRes} noResult={this.state.noResult} />
+      </div>
     );
   }
 }
